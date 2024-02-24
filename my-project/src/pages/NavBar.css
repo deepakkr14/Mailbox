@@ -1,0 +1,31 @@
+.navlink.active {
+  background-color: rgb(18, 218, 194);
+  color: rgb(206, 41, 41);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.navbar {
+  background-color: rgb(18, 158, 183);
+  color: white;
+  min-width: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 90vh;
+  padding: 30px 2px 30px 20px;
+  overflow: hidden;
+}
+
+.navlink {
+  text-decoration: none;
+  color: greenyellow;
+  font-size: large;
+  margin-bottom: 20px;
+}
+.box{
+  overflow: auto;
+  min-width: 140vh;
+ background-color: aqua;
+ color: blue;
+}

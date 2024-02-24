@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Singup = () => {
-  // const Navigate = useNavigate();
+  const Navigate = useNavigate();
   const passwordRef = useRef();
   const emailRef = useRef();
   const cnfPasswordRef = useRef();

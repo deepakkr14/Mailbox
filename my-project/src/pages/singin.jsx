@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Singin = () => {
   // const dispatch = useDispatch();
-  // const Navigate = useNavigate();
+  const Navigate = useNavigate();
 
   const passwordRef = useRef();
   const emailRef = useRef();
@@ -42,10 +42,11 @@ const Singin = () => {
             localStorage.setItem("token", data.idToken);
             localStorage.setItem("username", data.email);
             toast.success("Logged in successfully");
+          
             // dispatch(
             //   AuthActions.login({ token: data.idToken, userId: data.email })
             // );
-            // Navigate("/hero");
+            Navigate("/hero");
           });
         } else {
           return res.json().then((data) => {
