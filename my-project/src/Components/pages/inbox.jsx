@@ -36,7 +36,7 @@ function Inbox() {
   };
   
   useEffect(() => {
-    fetchData();
+  setInterval(fetchData(),2000)  ;
   }, []);
   
   const openMail = async(mail) => {
