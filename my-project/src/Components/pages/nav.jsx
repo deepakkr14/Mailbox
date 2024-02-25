@@ -21,7 +21,10 @@ const SideNav = () => {
       countUnReadMails++;
     }
   });
-
+ const handleLogout=()=>{
+   dispatch(authActions.logout())
+   Navigate('/')
+ }
   return (
     <>
       <div className="navbar">
@@ -31,7 +34,7 @@ const SideNav = () => {
           variant="top"
           className="sig"
         />
-        <h4 style={{ marginBottom: "30px" }}>User:fff</h4>
+        <h4 style={{ marginBottom: "30px" }}>{localStorage.getItem('username').split('@')[0]}</h4>
         {/* <Navbar> */}
         <NavLink className="navlink" to="/compose">
           <Pen /> Compose
@@ -45,11 +48,11 @@ const SideNav = () => {
         <NavLink to="/sent" className="navlink">
           <Send /> SentBox
         </NavLink>
-        <NavLink to="/trash" className="navlink">
+        {/* <NavLink to="/trash" className="navlink">
           <Trash2 /> Trash
-        </NavLink>
+        </NavLink> */}
         <Button
-          onClick={() => dispatch(authActions.logout())}
+          onClick={()=> handleLogout()}
           variant="outline-light"
         >
           Logout
