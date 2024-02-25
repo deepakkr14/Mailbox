@@ -19,15 +19,12 @@ const compose = () => {
   const [editorHtml, setEditorHtml] = useState('');
   const [isLoading,setLoading]=useState(false)
   const onEditorChange = (html) => {
-    console.log(html,'inonchange');
     setEditorHtml(html);
 
   };
   const submitHandler=async(e)=>{ 
     e.preventDefault()
     setLoading(true)
-    console.log(editorHtml)
-    alert("Email has been sent")
    try{ const receiverEmail = toRef.current.value;
     const receiverName = receiverEmail.split("@")[0];
     const subject = subjectRef.current.value;
@@ -63,7 +60,6 @@ const compose = () => {
       subjectRef.current.value = "";
 
     const sentData = { id : data.name, ...sentMessage};
-    data && alert("Mail sent succesfully");
     dispatch(mailActions.addSentboxMail(sentData));
     // setEditorHtml("");
 
@@ -84,7 +80,7 @@ const compose = () => {
       body : receiverMessage,
     });
     setLoading(false);
-
+    setEditorHtml("")
    
   } catch (error) {
     console.error(error);

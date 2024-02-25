@@ -11,7 +11,6 @@ import Compose from "./Components/pages/compose";
 import InboxView from "./Components/pages/viewInbox";
 function App() {
   const location = useLocation();
-  console.log(location.pathname);
   const isSignupOrSignin =
     location.pathname === "/" || location.pathname === "/singup";
   return (

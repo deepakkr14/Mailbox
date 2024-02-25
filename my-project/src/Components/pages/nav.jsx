@@ -5,42 +5,53 @@ import "./NavBar.css";
 import { Navbar, Button, Col, Nav } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-
+import { authActions } from "../Store/AuthSlice";
 import { Trash2, Send, Pen, EnvelopePaper } from "react-bootstrap-icons";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 
 const SideNav = () => {
   const Navigate = useNavigate();
   // / configureAnchors({ scrollDuration: 1000 });
+  const dispatch = useDispatch();
+  const inboxMails = useSelector((state) => state.mails.inboxMails);
+  let countUnReadMails = 0;
+  inboxMails.forEach((each) => {
+    if (each.isRead === false) {
+      countUnReadMails++;
+    }
+  });
+
   return (
     <>
-
-     
-
       <div className="navbar">
-      <Card.Img
-      style={{maxHeight:'120px'}}
-            src='/vite.svg'
-            variant='top'
-            className='sig'
-          />
+        <Card.Img
+          style={{ maxHeight: "120px" }}
+          src="/vite.svg"
+          variant="top"
+          className="sig"
+        />
         <h4 style={{ marginBottom: "30px" }}>User:fff</h4>
         {/* <Navbar> */}
         <NavLink className="navlink" to="/compose">
-         <Pen/> Compose
+          <Pen /> Compose
         </NavLink>
         <NavLink to="/inbox" className="navlink">
-          <EnvelopePaper/>Inbox
-          {/* /* /* * - {countUnReadMails} * * * */}
+          <EnvelopePaper />
+          Inbox ---
+          {countUnReadMails}
         </NavLink>
 
         <NavLink to="/sent" className="navlink">
-         <Send/> SentBox
+          <Send /> SentBox
         </NavLink>
         <NavLink to="/trash" className="navlink">
-         <Trash2/> Trash
+          <Trash2 /> Trash
         </NavLink>
-        <Button onClick={console.log("aaa")} variant="outline-light">
+        <Button
+          onClick={() => dispatch(authActions.logout())}
+          variant="outline-light"
+        >
           Logout
         </Button>
         {/* </Navbar> */}

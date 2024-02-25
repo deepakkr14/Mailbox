@@ -15,6 +15,7 @@ function Inbox() {
   const [mails, setReciveData] = useState([]);
   // const mails = useSelector(state => state.mails.inboxMails);
   
+  useDispatch(mailActions.addInboxMail(mails))
 
   const userEmail = localStorage.getItem('email');
   const userName = userEmail.split("@")[0];
@@ -24,23 +25,24 @@ function Inbox() {
       `https://mailbox-d7010-default-rtdb.firebaseio.com/mail-box/${userName}/inbox.json`,
     );
     const resData = await inboxData.json();
-    console.log(resData)
-
-    const mails = Object.entries(resData).map(([id, mail]) => ({
+    const dataEntries=resData ?Object.entries(resData):[];
+    const mails = dataEntries.map(([id, mail]) => ({
       id: id,
       ...mail
     }));
     setReciveData(mails);
-    useDispatch(mailActions.addInboxMail(mails))
+    console.log(mails)
+    dispatch(mailActions.addInboxMail(mails));
   };
-
+  
   useEffect(() => {
     fetchData();
   }, []);
   
   const openMail = async(mail) => {
     try {
-      dispatch(mailActions.addInboxMail(mail));
+      
+      dispatch(mailActions.updatedInboxMail(mail))
       await sendRequest({
         endPoint: `${userName}/inbox/${mail.id}`,
         method: "PUT",
@@ -68,7 +70,7 @@ function Inbox() {
 
   return (
     <div className={classes.inbox}>
-       <h3 className={classes.inboxHeading}>Inbox</h3>
+       <h3 className={classes.inboxHeading}>Inbox </h3>
        {!mails.length && <h5 className={classes.inboxHeading}>No Mails</h5>}
       {mails.map((mail) => (
         <Container fluid key={mail.id}>
@@ -76,7 +78,7 @@ function Inbox() {
             mail.isRead ? classes.openedMail : classes.notOpenedMail
           }>
             <Col className="col-11">
-              <NavLink className={classes.navlink} to={`/inbox/:${mail.id}`}>
+              <NavLink className={classes.navlink} to={`/inbox/${mail.id}`}>
                 <Row onClick={openMail.bind(null, mail)}>
                   <Col className="fw-bold col-2">{mail.from}</Col>
                   <Col className="col-8">
@@ -113,7 +115,7 @@ function Inbox() {
           </Row>
         </Container>
       ))}
-      <NavLink className={classes.navlink} to="compose-mail">
+      <NavLink className={classes.navlink} to="/compose">
           <Button className={classes.composeBtn} variant="success" >
             Compose
           </Button>

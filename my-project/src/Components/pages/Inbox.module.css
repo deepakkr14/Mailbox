@@ -1,12 +1,12 @@
 .openedMail {
-    color: black;
+    color: rgb(50, 127, 37);
     padding: 5px;
     border: 1px solid black;
     background-color: rgb(250, 246, 246);
 }
 
 .notOpenedMail {
-    color: black;
+    color: rgb(29, 79, 186);
     padding: 5px;
     border: 1px solid black;
     background: rgb(195, 235, 211);
