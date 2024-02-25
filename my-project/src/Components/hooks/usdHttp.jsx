@@ -7,7 +7,7 @@ const useHttp = () => {
       const url = req.url || 
         `https://mailbox-d7010-default-rtdb.firebaseio.com/mail-box/${endPoint}.json`;
 
-      console.log(url,"useHttp");
+      console.log(url,"useHttp",req.method);
       const response = await fetch(url,{
         method: req.method || 'GET',
         body: req.body ? JSON.stringify(req.body) : null,
@@ -25,7 +25,7 @@ const useHttp = () => {
       }
 
       const data = await response.json();
-      console.log(data,endPoint,"useHttp");
+      console.log(data,endPoint,"useHttp",req.method);
       return data;
 
     } catch (error) {

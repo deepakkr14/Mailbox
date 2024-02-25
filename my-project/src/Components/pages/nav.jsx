@@ -29,7 +29,7 @@ const SideNav = () => {
         <NavLink className="navlink" to="/compose">
          <Pen/> Compose
         </NavLink>
-        <NavLink to="/hero" className="navlink">
+        <NavLink to="/inbox" className="navlink">
           <EnvelopePaper/>Inbox
           {/* /* /* * - {countUnReadMails} * * * */}
         </NavLink>

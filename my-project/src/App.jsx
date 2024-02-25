@@ -8,9 +8,10 @@ import Inbox from "./Components/pages/inbox";
 import Trash from "./Components/pages/trash";
 import Sent from "./Components/pages/sent";
 import Compose from "./Components/pages/compose";
+import InboxView from "./Components/pages/viewInbox";
 function App() {
   const location = useLocation();
-
+  console.log(location.pathname);
   const isSignupOrSignin =
     location.pathname === "/" || location.pathname === "/singup";
   return (
@@ -20,15 +21,18 @@ function App() {
         <Routes>
           <Route path="/" element={<Signin />} />
           <Route path="/singup" element={<Singup />} />
-          <Route path="/hero" element={<Inbox />} />
+          <Route path="/inbox" element={<Inbox />} />
+          {/* <Route index element={<InboxView />} /> */}
+          {/* <Route exact path=":id" element={<InboxView />} /> */}
+
           <Route path="/trash" element={<Trash />} />
           <Route path="/compose" element={<Compose />} />
           <Route path="/sent" element={<Sent />} />
-          {/*<Route
-            path="/verify"
-            element={loginState ? <Hero /> : <Navigate to="/" />}
-          />
-          <Route path="/forget" element={<ForgotPassword />} /> */}
+
+          <Route exact path="/inbox/:id" element={<InboxView />} />
+
+          {/* {!isSignupOrSignin && <Redirect to="login" />} */}
+          {/* </Route> } */}
         </Routes>
       </Suspense>
     </>
