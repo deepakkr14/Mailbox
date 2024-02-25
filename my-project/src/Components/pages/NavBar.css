@@ -1,5 +1,5 @@
 .navlink.active {
-  background-color: rgb(18, 218, 194);
+  background-color: rgb(73, 86, 85);
   color: rgb(206, 41, 41);
   padding: 4px 8px;
   border-radius: 4px;
@@ -25,7 +25,24 @@
 }
 .box{
   overflow: auto;
-  min-width: 140vh;
- background-color: aqua;
+  min-width: 148vh;
+ background-color: rgb(127, 176, 176);
  color: blue;
+ max-height: 90vh;
+
+}
+
+/* css fo qui;ll */
+.App-header {
+  background-color: #282c34;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-bottom: 5vh;
+  text-align: center;
+  padding: 12px;
 }

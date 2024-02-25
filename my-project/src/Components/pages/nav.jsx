@@ -6,7 +6,7 @@ import { Navbar, Button, Col, Nav } from "react-bootstrap";
 // import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 
-import { Trash2, Send, Pen, Mailbox } from "react-bootstrap-icons";
+import { Trash2, Send, Pen, EnvelopePaper } from "react-bootstrap-icons";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 const SideNav = () => {
@@ -27,18 +27,18 @@ const SideNav = () => {
         <h4 style={{ marginBottom: "30px" }}>User:fff</h4>
         {/* <Navbar> */}
         <NavLink className="navlink" to="/compose">
-          Compose
+         <Pen/> Compose
         </NavLink>
         <NavLink to="/hero" className="navlink">
-          Inbox
+          <EnvelopePaper/>Inbox
           {/* /* /* * - {countUnReadMails} * * * */}
         </NavLink>
 
         <NavLink to="/sent" className="navlink">
-          SentBox
+         <Send/> SentBox
         </NavLink>
         <NavLink to="/trash" className="navlink">
-          Trash
+         <Trash2/> Trash
         </NavLink>
         <Button onClick={console.log("aaa")} variant="outline-light">
           Logout

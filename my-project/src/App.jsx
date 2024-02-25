@@ -1,13 +1,13 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import "./App.css";
-import Signin from "./pages/singin.jsx";
-import Singup from "./pages/singup";
-import Nav from "./pages/nav";
-import Inbox from "./pages/inbox";
-import Trash from "./pages/trash";
-import Sent from "./pages/sent";
-import Compose from "./pages/compose";
+import Signin from "./Components/pages/singin.jsx";
+import Singup from "./Components/pages/singup";
+import Nav from "./Components/pages/nav";
+import Inbox from "./Components/pages/inbox";
+import Trash from "./Components/pages/trash";
+import Sent from "./Components/pages/sent";
+import Compose from "./Components/pages/compose";
 function App() {
   const location = useLocation();
 

@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import { useDispatch } from "react-redux";
-// import { AuthActions } from "../Store/AuthSlice";
+import { useDispatch } from "react-redux";
+import { authActions } from "../Store/AuthSlice";
 
 const Singin = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const Navigate = useNavigate();
 
   const passwordRef = useRef();
@@ -42,10 +42,9 @@ const Singin = () => {
             localStorage.setItem("token", data.idToken);
             localStorage.setItem("username", data.email);
             toast.success("Logged in successfully");
-          
-            // dispatch(
-            //   AuthActions.login({ token: data.idToken, userId: data.email })
-            // );
+            dispatch(authActions.login({token:data.idToken,email:data.email}))
+
+            
             Navigate("/hero");
           });
         } else {
