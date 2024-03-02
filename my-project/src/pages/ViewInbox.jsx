@@ -4,8 +4,8 @@ import {ArrowBarLeft} from 'react-bootstrap-icons'
 import { useParams,NavLink, useNavigate} from 'react-router-dom';
 import { Button,Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
-import { mailActions } from '../Store/MailSlice';
-import useHttp from '../hooks/usdHttp';
+import { mailActions } from '../components/Store/MailSlice';
+import useHttp from '../components/Hooks/UsdHttp';
 
 
 function InboxView() {

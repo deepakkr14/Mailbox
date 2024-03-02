@@ -1,15 +1,15 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import "./App.css";
-import Signin from "./Components/pages/singin.jsx";
-import Singup from "./Components/pages/singup";
-import Nav from "./Components/pages/nav";
-import Inbox from "./Components/pages/inbox";
-import Trash from "./Components/pages/trash";
-import Sent from "./Components/pages/sent";
-import Compose from "./Components/pages/compose";
-import InboxView from "./Components/pages/viewInbox";
-import SentboxView from "./Components/pages/SentBoxView";
+import Signin from "./pages/Singin";
+import Singup from "./pages/Singup.jsx";
+import Nav from "./components/UI/Nav.jsx";
+import Inbox from "./pages/Inbox";
+import Trash from "./pages/Trash.jsx";
+import Sent from "./pages/Sent.jsx";
+import Compose from "./pages/Compose.jsx";
+import InboxView from "./pages/ViewInbox.jsx";
+import SentboxView from "./pages/SentBoxView.jsx";
 function App() {
   const location = useLocation();
   const isSignupOrSignin =
@@ -22,7 +22,7 @@ function App() {
           <Route path="/" element={<Signin />} />
           <Route path="/singup" element={<Singup />} />
           <Route path="/inbox" element={<Inbox />} />
-         
+
           <Route path="/trash" element={<Trash />} />
           <Route path="/compose" element={<Compose />} />
           <Route path="/sent" element={<Sent />} />

@@ -5,7 +5,7 @@ import './index.css'
 import {ToastContainer} from 'react-toastify'
 import { BrowserRouter } from 'react-router-dom';
 import {Provider} from 'react-redux'
-import Reduxstore from './Components/Store/Reduxstore.jsx';
+import Reduxstore from './components/Store/Reduxstore.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

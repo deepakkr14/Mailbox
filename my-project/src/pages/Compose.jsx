@@ -4,8 +4,8 @@ import { Form, FormLabel, FloatingLabel,FormControl, Button ,Spinner} from 'reac
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from "react-redux";
 
-import { mailActions } from "../Store/MailSlice"
-import useHttp from "../hooks/usdHttp";
+import { mailActions } from "../components/Store/MailSlice"
+import useHttp from "../components/Hooks/UsdHttp";
 const compose = () => {
   const dispatch = useDispatch();
 

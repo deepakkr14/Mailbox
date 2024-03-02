@@ -3,8 +3,8 @@ import { Row, Col, Container, Button ,Spinner} from "react-bootstrap";
 import { NavLink } from 'react-router-dom';
 import classes from "./Inbox.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { mailActions } from '../Store/MailSlice';
-import useHttp from '../hooks/usdHttp';
+import { mailActions } from '../components/Store/MailSlice';
+import useHttp from '../components/Hooks/UsdHttp';
 
 // import Nav from './nav'
 // import './nav.css';

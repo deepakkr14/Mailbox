@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useDispatch } from "react-redux";
-import { authActions } from "../Store/AuthSlice";
+import { authActions } from "../components/Store/AuthSlice";
 
 const Singin = () => {
   const dispatch = useDispatch();

@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import classes from "./Inbox.module.css";
 import { Row, Col, Button ,Container,Spinner} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
-import { mailActions } from '../Store/MailSlice';
-import useHttp from '../hooks/usdHttp';
+import { mailActions } from '../components/Store/MailSlice';
+import useHttp from '../components/Hooks/UsdHttp';
 
 function SentBox() {
 
