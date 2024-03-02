@@ -45,7 +45,7 @@ const Singin = () => {
             dispatch(authActions.login({token:data.idToken,email:data.email}))
 
             
-            Navigate("/compose");
+            Navigate("/");
           });
         } else {
           return res.json().then((data) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import "./NavBar.css";
 // import classes from "./NavBar.module.css";
 import { Navbar, Button, Col, Nav } from "react-bootstrap";
@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const SideNav = () => {
   const Navigate = useNavigate();
-  
+
   // / configureAnchors({ scrollDuration: 1000 });
   const dispatch = useDispatch();
   const inboxMails = useSelector((state) => state.mails.inboxMails);
@@ -22,10 +22,10 @@ const SideNav = () => {
       countUnReadMails++;
     }
   });
- const handleLogout=()=>{
-   dispatch(authActions.logout())
-   Navigate('/')
- }
+  const handleLogout = () => {
+    dispatch(authActions.logout());
+    Navigate("/singin");
+  };
   return (
     <>
       <div className="navbar">
@@ -35,9 +35,11 @@ const SideNav = () => {
           variant="top"
           className="sig"
         />
-        <h4 style={{ marginBottom: "30px" }}>{localStorage.getItem('username').split('@')[0]}</h4>
+        <h4 style={{ marginBottom: "30px" }}>
+          {localStorage.getItem("username").split("@")[0]}
+        </h4>
         {/* <Navbar> */}
-        <NavLink className="navlink" to="/compose">
+        <NavLink className="navlink" to="/">
           <Pen /> Compose
         </NavLink>
         <NavLink to="/inbox" className="navlink">
@@ -52,14 +54,12 @@ const SideNav = () => {
         {/* <NavLink to="/trash" className="navlink">
           <Trash2 /> Trash
         </NavLink> */}
-        <Button
-          onClick={()=> handleLogout()}
-          variant="outline-light"
-        >
+        <Button onClick={() => handleLogout()} variant="outline-light">
           Logout
         </Button>
         {/* </Navbar> */}
       </div>
+      {/* <Outlet/> */}
     </>
   );
 };
