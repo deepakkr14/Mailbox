@@ -63,6 +63,7 @@ const Singin = () => {
   };
 
   return (
+    <>
     <div className="row justify-content-center p-4 ">
       <div className="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
         <div className="card border border-light-subtle rounded-4">
@@ -129,7 +130,7 @@ const Singin = () => {
                   Don't have a account?
                   <NavLink
                     className="link-primary text-decoration-none"
-                    // onClick={() => Navigate("/singup")}
+                    onClick={() => Navigate("/singup")}
                   >
                     Create new
                   </NavLink>
@@ -143,6 +144,10 @@ const Singin = () => {
         </div>
       </div>
     </div>
+    <div>
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/09/fa/b3/09fab3ae-4840-2ec1-bb1c-28a4612e7e41/AppIcon-0-1x_U007emarketing-0-6-0-85-220-0.png/512x512bb.jpg"></img>
+    </div>
+    </>
     /* // </section> */
   );
 };

@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const SideNav = () => {
   const Navigate = useNavigate();
+  
   // / configureAnchors({ scrollDuration: 1000 });
   const dispatch = useDispatch();
   const inboxMails = useSelector((state) => state.mails.inboxMails);

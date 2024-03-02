@@ -9,6 +9,7 @@ import Trash from "./Components/pages/trash";
 import Sent from "./Components/pages/sent";
 import Compose from "./Components/pages/compose";
 import InboxView from "./Components/pages/viewInbox";
+import SentboxView from "./Components/pages/SentBoxView";
 function App() {
   const location = useLocation();
   const isSignupOrSignin =
@@ -21,14 +22,13 @@ function App() {
           <Route path="/" element={<Signin />} />
           <Route path="/singup" element={<Singup />} />
           <Route path="/inbox" element={<Inbox />} />
-          {/* <Route index element={<InboxView />} /> */}
-          {/* <Route exact path=":id" element={<InboxView />} /> */}
-
+         
           <Route path="/trash" element={<Trash />} />
           <Route path="/compose" element={<Compose />} />
           <Route path="/sent" element={<Sent />} />
 
           <Route exact path="/inbox/:id" element={<InboxView />} />
+          <Route exact path="/sentbox/:id" element={<SentboxView />} />
 
           {/* {!isSignupOrSignin && <Redirect to="login" />} */}
           {/* </Route> } */}

@@ -13,9 +13,9 @@ function Inbox() {
   const sendRequest = useHttp();
   const [isLoading, setIsLoading] = useState(null);
   const [mails, setReciveData] = useState([]);
-  // const mails = useSelector(state => state.mails.inboxMails);
+  const mailsact = useSelector(state => state.mails.inboxMails);
   
-  useDispatch(mailActions.addInboxMail(mails))
+  // useDispatch(mailActions.addInboxMail(mails))
 
   const userEmail = localStorage.getItem('email');
   const userName = userEmail.split("@")[0];
@@ -31,13 +31,16 @@ function Inbox() {
       ...mail
     }));
     setReciveData(mails);
-    console.log(mails)
-    dispatch(mailActions.addInboxMail(mails));
+    dispatch(mailActions.replaceInboxMail(mails));
   };
   
   useEffect(() => {
-  setInterval(fetchData(),2000)  ;
-  }, []);
+    // fetchData()
+  // setInterval(fetchData(),2000)  ;
+  const intervalId = setInterval(fetchData, 2000);
+  // Clear the interval when the component unmounts or when mailsact changes
+  return () => clearInterval(intervalId);
+  }, [mailsact]);
   
   const openMail = async(mail) => {
     try {
@@ -62,6 +65,7 @@ function Inbox() {
         })
         setIsLoading(null);
         dispatch(mailActions.removeInboxMail(mail));
+        fetchData()
       } catch (error) {
         console.log(error,"inbox delete");
       }

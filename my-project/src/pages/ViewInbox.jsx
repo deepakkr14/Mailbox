@@ -22,7 +22,6 @@ function InboxView() {
 
     const inboxMails = useSelector(state => state.mails.inboxMails);
     const mail = inboxMails.find(i => i.id === id);
-    console.log(mail)
 
     const fromMail = mail && `<${mail.fromMail}>`;
     const deleteMail = async () => {

@@ -13,7 +13,6 @@ function SentBox() {
   const dispatch = useDispatch();
   const mails = useSelector(state => state.mails.sentBoxMails);
   const [isLoading, setIsLoading] = useState(null);
-console.log(mails)
   const sendRequest = useHttp();
 
   const deleteMail = async(mail)=>{

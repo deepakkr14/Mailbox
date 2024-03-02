@@ -159,6 +159,9 @@ const Singup = () => {
         </div>
       </div>
     </div> 
+    <div>
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/09/fa/b3/09fab3ae-4840-2ec1-bb1c-28a4612e7e41/AppIcon-0-1x_U007emarketing-0-6-0-85-220-0.png/512x512bb.jpg"></img>
+    </div>
     </React.Fragment>
  )}
 
