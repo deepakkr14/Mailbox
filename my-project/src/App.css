@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
 }
 
 .logo {
@@ -42,7 +43,7 @@
 }
 
 .loader {
-  position: relative;
+  position: absolute;
   left: 45%;
   top: 50%;
   width: fit-content;

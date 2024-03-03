@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams,NavLink } from 'react-router-dom';
 import { Button } from "react-bootstrap";
 import classes from "./InboxView.module.css";

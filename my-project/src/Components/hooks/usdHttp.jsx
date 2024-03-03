@@ -25,7 +25,7 @@ const useHttp = () => {
       }
 
       const data = await response.json();
-      console.log(data,endPoint,"useHttp",req.method);
+      // console.log(data,endPoint,"useHttp",req.method);
       return data;
 
     } catch (error) {

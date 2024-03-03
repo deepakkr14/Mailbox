@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import classes from './InboxView.module.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import {ArrowBarLeft} from 'react-bootstrap-icons'
 import { useParams,NavLink, useNavigate} from 'react-router-dom';
 import { Button,Spinner } from "react-bootstrap";

@@ -1,20 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import "./NavBar.css";
 // import classes from "./NavBar.module.css";
 import { Navbar, Button, Col, Nav } from "react-bootstrap";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 import { authActions } from "../Store/AuthSlice";
 import { Trash2, Send, Pen, EnvelopePaper } from "react-bootstrap-icons";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-
+import { InboxActions } from "../Store/Actions/Action";
 const SideNav = () => {
   const Navigate = useNavigate();
-
-  // / configureAnchors({ scrollDuration: 1000 });
   const dispatch = useDispatch();
+
+  // for realtime messaging
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      dispatch(InboxActions());
+    }, 5000);
+    return () => clearInterval(intervalId);
+  }, []);
+
   const inboxMails = useSelector((state) => state.mails.inboxMails);
   let countUnReadMails = 0;
   inboxMails.forEach((each) => {
@@ -38,7 +45,7 @@ const SideNav = () => {
         <h4 style={{ marginBottom: "30px" }}>
           {localStorage.getItem("username").split("@")[0]}
         </h4>
-        {/* <Navbar> */}
+     
         <NavLink className="navlink" to="/">
           <Pen /> Compose
         </NavLink>
@@ -57,9 +64,9 @@ const SideNav = () => {
         <Button onClick={() => handleLogout()} variant="outline-light">
           Logout
         </Button>
-        {/* </Navbar> */}
+      
       </div>
-      {/* <Outlet/> */}
+    
     </>
   );
 };

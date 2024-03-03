@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 import classes from "./Inbox.module.css";
 import { Row, Col, Button ,Container,Spinner} from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 import { mailActions } from '../components/Store/MailSlice';
 import useHttp from '../components/Hooks/UsdHttp';
-
+import {SentActions} from '../components/Store/Actions/Action'
 function SentBox() {
 
   const userEmail = localStorage.getItem('email');
@@ -14,6 +15,9 @@ function SentBox() {
   const mails = useSelector(state => state.mails.sentBoxMails);
   const [isLoading, setIsLoading] = useState(null);
   const sendRequest = useHttp();
+  useEffect(() => {
+    dispatch(SentActions());   
+  }, []);
 
   const deleteMail = async(mail)=>{
     try {

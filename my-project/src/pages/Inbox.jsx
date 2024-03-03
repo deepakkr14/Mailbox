@@ -1,86 +1,62 @@
-import React, {  useState ,useEffect} from 'react'
-import { Row, Col, Container, Button ,Spinner} from "react-bootstrap";
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Row, Col, Container, Button, Spinner } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import classes from "./Inbox.module.css";
-import { useDispatch, useSelector } from 'react-redux';
-import { mailActions } from '../components/Store/MailSlice';
-import useHttp from '../components/Hooks/UsdHttp';
+import { useDispatch, useSelector } from "react-redux";
+import { mailActions } from "../components/Store/MailSlice";
+import useHttp from "../components/Hooks/UsdHttp";
 
-// import Nav from './nav'
-// import './nav.css';
 function Inbox() {
   const dispatch = useDispatch();
   const sendRequest = useHttp();
   const [isLoading, setIsLoading] = useState(null);
-  const [mails, setReciveData] = useState([]);
-  const mailsact = useSelector(state => state.mails.inboxMails);
-  
-  // useDispatch(mailActions.addInboxMail(mails))
-
-  const userEmail = localStorage.getItem('email');
+  const mailsact = useSelector((state) => state.mails.inboxMails);
+  const userEmail = localStorage.getItem("email");
   const userName = userEmail.split("@")[0];
-
-  const fetchData = async () => {
-    const inboxData = await fetch(
-      `https://mailbox-d7010-default-rtdb.firebaseio.com/mail-box/${userName}/inbox.json`,
-    );
-    const resData = await inboxData.json();
-    const dataEntries=resData ?Object.entries(resData):[];
-    const mails = dataEntries.map(([id, mail]) => ({
-      id: id,
-      ...mail
-    }));
-    setReciveData(mails);
-    dispatch(mailActions.replaceInboxMail(mails));
-  };
-  
-  useEffect(() => {
-    // fetchData()
-  // setInterval(fetchData(),2000)  ;
-  const intervalId = setInterval(fetchData, 2000);
-  // Clear the interval when the component unmounts or when mailsact changes
-  return () => clearInterval(intervalId);
-  }, [mailsact]);
-  
-  const openMail = async(mail) => {
+  const openMail = async (mail) => {
     try {
-      
-      dispatch(mailActions.updatedInboxMail(mail))
+      dispatch(mailActions.updatedInboxMail(mail));
       await sendRequest({
         endPoint: `${userName}/inbox/${mail.id}`,
         method: "PUT",
-        body: {...mail, isRead: true}
+        body: { ...mail, isRead: true },
       });
     } catch (error) {
-      console.log(error,"openMail inbox");
-    }  
-  }
+      console.log(error, "openMail inbox");
+    }
+  };
 
-    const deleteMail = async (mail) => {
-      try {
-        setIsLoading(mail.id);
-        await sendRequest({
-          endPoint: `${userName}/inbox/${mail.id}`,
-          method: "DELETE",
-        })
-        setIsLoading(null);
-        dispatch(mailActions.removeInboxMail(mail));
-        fetchData()
-      } catch (error) {
-        console.log(error,"inbox delete");
-      }
-    };
-
+  const deleteMail = async (mail) => {
+    try {
+      setIsLoading(mail.id);
+      await sendRequest({
+        endPoint: `${userName}/inbox/${mail.id}`,
+        method: "DELETE",
+      });
+      setIsLoading(null);
+      dispatch(mailActions.removeInboxMail(mail));
+    } catch (error) {
+      console.log(error, "inbox delete");
+    }
+  };
 
   return (
     <div className={classes.inbox}>
-       <h3 className={classes.inboxHeading}>Inbox </h3>
-       {!mails.length && <h5 className={classes.inboxHeading}>No Mails</h5>}
-      {mails.map((mail) => (
+      <h3 className={classes.inboxHeading}>Inbox </h3>
+
+      {!mailsact.length && (
+        <>
+          <div className="loader" />
+          <h5 className={classes.inboxHeading}>No Mails</h5>{" "}
+        </>
+      )}
+      {mailsact.map((mail) => (
         <Container fluid key={mail.id}>
-          <Row key={mail.id} className={
-            mail.isRead ? classes.openedMail : classes.notOpenedMail
-          }>
+          <Row
+            key={mail.id}
+            className={mail.isRead ? classes.openedMail : classes.notOpenedMail}
+          >
             <Col className="col-11">
               <NavLink className={classes.navlink} to={`/inbox/${mail.id}`}>
                 <Row onClick={openMail.bind(null, mail)}>
@@ -92,8 +68,8 @@ function Inbox() {
                   </Col>
                   <Col className="col-2">
                     <strong>
-                      {mail.time.hours}:{mail.time.minutes} {" "}
-                      {mail.date.day}-{mail.date.month}-{mail.date.year} 
+                      {mail.time.hours}:{mail.time.minutes} {mail.date.day}-
+                      {mail.date.month}-{mail.date.year}
                     </strong>
                   </Col>
                 </Row>
@@ -105,38 +81,31 @@ function Inbox() {
                 style={{ padding: "0px 5px" }}
                 variant="danger"
               >
-                 {(isLoading === mail.id) ?   
+                {isLoading === mail.id ? (
                   <span>
-                    <Spinner as="span" animation="border" size="sm" role="status" 
+                    <Spinner
+                      as="span"
+                      animation="border"
+                      size="sm"
+                      role="status"
                       aria-hidden="true"
                     />
                   </span>
-                  : 
-                  'Delete'
-                }
+                ) : (
+                  "Delete"
+                )}
               </Button>
             </Col>
           </Row>
         </Container>
       ))}
-      <NavLink className={classes.navlink} to="/compose">
-          <Button className={classes.composeBtn} variant="success" >
-            Compose
-          </Button>
+      <NavLink className={classes.navlink} to="/">
+        <Button className={classes.composeBtn} variant="success">
+          Compose
+        </Button>
       </NavLink>
     </div>
-  )
+  );
 }
-// const inbox = () => {
-//   return (
-//     <>
-
-//     <div className='box'>
-//       <h1>Inbox</h1>
-     
-//     </div>
-//     </>  
-//   )
-// }
 
 export default Inbox;

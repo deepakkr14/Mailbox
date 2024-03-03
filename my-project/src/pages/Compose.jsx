@@ -1,5 +1,6 @@
 import React,{useState,useRef} from 'react'
 import ReactQuill from 'react-quill';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Form, FormLabel, FloatingLabel,FormControl, Button ,Spinner} from 'react-bootstrap';
 import 'react-quill/dist/quill.snow.css';
 import { useDispatch, useSelector } from "react-redux";
